@@ -16,8 +16,8 @@ import { RichText } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function Save( { attributes } ) {
+export default function Save( props ) {
 	return (
-			<RichText.Content tagName="p" value={ attributes.content } />
+			<RichText.Content tagName="p" value={ props.attributes.content } />
 		);
 }
