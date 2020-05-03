@@ -20,7 +20,13 @@ import { RichText } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit( { attributes, setAttributes, className } ) {
+export default function Edit( props ) {
+
+		const {
+			attributes: { content },
+			setAttributes,
+			className,
+		} = props;
 
 		const onChangeContent = ( newContent ) => {
 			setAttributes( { content: newContent } );
