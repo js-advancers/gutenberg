@@ -63,6 +63,33 @@ const templates = {
 		],
 		wpScriptsEnabled: true,
 	},
+	recipeCardEsnext: {
+		defaultValues: {
+			namespace,
+			slug: 'recipe-card',
+			title: 'Example: Recipe Card',
+			description:
+				'Example block for a Recipe Card – Build step required.',
+			dashicon: 'index-card',
+			category: 'layout',
+			author,
+			license,
+			licenseURI,
+			version,
+		},
+		outputFiles: [
+			'.editorconfig',
+			'.gitignore',
+			'editor.css',
+			'src/edit.js',
+			'src/index.js',
+			'src/save.js',
+			'$slug.php',
+			'style.css',
+			'readme.txt',
+		],
+		wpScriptsEnabled: true,
+	},
 };
 
 const getTemplate = ( templateName ) => {
