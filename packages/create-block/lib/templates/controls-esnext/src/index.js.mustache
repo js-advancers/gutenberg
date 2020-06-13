@@ -13,19 +13,13 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 /**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ * Editor imports
  */
-import './style.scss';
-
-/**
- * Internal dependencies
- */
-import Edit from './edit';
-import save from './save';
+import {
+	RichText,
+	AlignmentToolbar,
+	BlockControls,
+} from '@wordpress/block-editor';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -59,6 +53,21 @@ registerBlockType( '{{namespace}}/{{slug}}', {
 	 */
 	category: '{{category}}',
 
+	/**
+	 * Attributes used in functions
+	 */
+	attributes: {
+		content: {
+			type: 'array',
+			source: 'children',
+			selector: 'p',
+		},
+		alignment: {
+			type: 'string',
+			default: 'none',
+		},
+	},
+
 	{{#dashicon}}
 	/**
 	 * An icon property should be specified to make it easier to identify a block.
@@ -67,21 +76,61 @@ registerBlockType( '{{namespace}}/{{slug}}', {
 	icon: '{{dashicon}}',
 
 	{{/dashicon}}
+
 	/**
-	 * Optional block extended support features.
+	 * Edit function
+	 *
+	 * @param {obj} props
 	 */
-	supports: {
-		// Removes support for an HTML mode.
-		html: false,
+	edit: ( props ) => {
+		const {
+			attributes: { content, alignment },
+			className,
+		} = props;
+
+		const onChangeContent = ( newContent ) => {
+			props.setAttributes( { content: newContent } );
+		};
+
+		const onChangeAlignment = ( newAlignment ) => {
+			props.setAttributes( {
+				alignment: newAlignment === undefined ? 'none' : newAlignment,
+			} );
+		};
+
+		return (
+			<div>
+				{
+					<BlockControls>
+						<AlignmentToolbar
+							value={ alignment }
+							onChange={ onChangeAlignment }
+						/>
+					</BlockControls>
+				}
+				<RichText
+					className={ className }
+					style={ { textAlign: alignment } }
+					tagName="p"
+					onChange={ onChangeContent }
+					value={ content }
+				/>
+			</div>
+		);
 	},
 
 	/**
-	 * @see ./edit.js
+	 * Save function
+	 *
+	 * @param {obj} props
 	 */
-	edit: Edit,
-
-	/**
-	 * @see ./save.js
-	 */
-	save,
+	save: ( props ) => {
+		return (
+			<RichText.Content
+				className={ `gutenberg-examples-align-${ props.attributes.alignment }` }
+				tagName="p"
+				value={ props.attributes.content }
+			/>
+		);
+	},
 } );

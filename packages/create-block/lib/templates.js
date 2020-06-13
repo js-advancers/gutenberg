@@ -30,6 +30,18 @@ const predefinedBlockTemplates = {
 				'Example block written with ESNext standard and JSX support – build step required.',
 		},
 	},
+	'controls-esnext': {
+		defaultValues: {
+			namespace: 'gutenberg-examples',
+			slug: 'example-04-controls-esnext',
+			title: 'Example: Controls (ESNext)',
+			textdomain: 'gutenberg-examples',
+			description:
+				'Example block written with ESNext standard and JSX support for GUI Controls– build step required.',
+			dashicon: 'universal-access-alt',
+			category: 'layout',
+		},
+	},
 };
 
 const getOutputTemplates = async ( name ) => {
