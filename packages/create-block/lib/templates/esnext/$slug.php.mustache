@@ -43,22 +43,6 @@ function {{namespaceSnakeCase}}_{{slugSnakeCase}}_block_init() {
 		$script_asset['version']
 	);
 
-	$editor_css = 'editor.css';
-	wp_register_style(
-		'{{namespace}}-{{slug}}-block-editor',
-		plugins_url( $editor_css, __FILE__ ),
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
-	$style_css = 'style.css';
-	wp_register_style(
-		'{{namespace}}-{{slug}}-block',
-		plugins_url( $style_css, __FILE__ ),
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type( '{{namespace}}/{{slug}}', array(
 		'editor_script' => '{{namespace}}-{{slug}}-block-editor',
 		'editor_style'  => '{{namespace}}-{{slug}}-block-editor',
