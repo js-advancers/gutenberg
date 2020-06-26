@@ -35,8 +35,9 @@ const predefinedBlockTemplates = {
 	},
 	recipeCardEsnext: {
 		defaultValues: {
-			slug: 'recipe-card',
-			title: 'Example: Recipe Card',
+			namespace: 'gutenberg-examples',
+			slug: 'example-05-recipe-card-esnext',
+			title: 'Example: Recipe Card ESNext',
 			description:
 				'Example block for a Recipe Card – Build step required.',
 			dashicon: 'index-card',
