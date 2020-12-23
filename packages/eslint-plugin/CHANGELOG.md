@@ -2,9 +2,15 @@
 
 ## Unreleased
 
+## 7.4.0 (2020-12-17)
+
 ### New Feature
 
 -   Add `no-unsafe-wp-apis` rule to discourage usage of unsafe APIs ([#27301](https://github.com/WordPress/gutenberg/pull/27301)).
+
+### Enhancements
+
+-   The bundled `wp-prettier` dependency has been upgraded from `2.0.5` to `2.2.1`.
 
 ### Documentation
 
